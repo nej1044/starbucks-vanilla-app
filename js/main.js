@@ -14,3 +14,19 @@ searchInputEl.addEventListener('blur', function() {
     searchEl.classList.remove('focused');
     searchInputEl.setAttribute('placeholder', '');
 })
+
+const badgeEl = document.querySelector('header .badges');
+
+window.addEventListener('scroll', _.throttle(() =>{
+    if(window.scrollY > 500) {
+        gsap.to(badgeEl, .6, {
+            display: 'none',
+            opacity: 0
+        })
+    }else {
+        gsap.to(badgeEl, .6, {
+            display: 'block',
+            opacity: 1
+        })
+    }
+}, 300))
