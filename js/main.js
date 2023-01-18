@@ -16,6 +16,7 @@ searchInputEl.addEventListener('blur', function() {
 })
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top')
 
 window.addEventListener('scroll', _.throttle(() =>{
     if(window.scrollY > 500) {
@@ -23,13 +24,25 @@ window.addEventListener('scroll', _.throttle(() =>{
             display: 'none',
             opacity: 0
         })
+        gsap.to(toTopEl, .2, {
+            x: 0
+        })
     }else {
         gsap.to(badgeEl, .6, {
             display: 'block',
             opacity: 1
         })
+        gsap.to(toTopEl, .2, {
+            x: 100
+        })
     }
 }, 300))
+
+toTopEl.addEventListener('click', function(){
+    gsap.to(window, .7, {
+        scrollTo: 0
+    });
+})
 
 const fadeEls = document.querySelectorAll('.visual .fade-in')
 
@@ -123,3 +136,4 @@ spyEls.forEach((spyEl) => {
 
 const thisYear = document.querySelector('.this-year');
 thisYear.textContent = new Date().getFullYear();
+
